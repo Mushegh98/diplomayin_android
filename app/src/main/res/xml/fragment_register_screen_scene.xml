@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:autoTransition="animateToEnd"
+        motion:duration="2500">
+       <KeyFrameSet>
+       </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/usernameRegister"
+            motion:layout_constraintEnd_toStartOf="@+id/guideline10"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toTopOf="@+id/guideline2"
+            motion:layout_constraintTop_toTopOf="@+id/guideline1"
+            motion:layout_constraintStart_toStartOf="@+id/guideline9"
+            android:scaleX="0"
+            android:scaleY="0"
+            android:alpha="0" />
+        <Constraint
+            android:id="@+id/email"
+            motion:layout_constraintEnd_toStartOf="@+id/guideline10"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toTopOf="@+id/guideline4"
+            motion:layout_constraintTop_toTopOf="@+id/guideline3"
+            motion:layout_constraintStart_toStartOf="@+id/guideline9"
+            android:scaleX="0"
+            android:scaleY="0"
+            android:alpha="0" />
+        <Constraint
+            android:id="@+id/passwordRegister"
+            motion:layout_constraintEnd_toStartOf="@+id/guideline10"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toTopOf="@+id/guideline12"
+            motion:layout_constraintTop_toTopOf="@+id/guideline11"
+            motion:layout_constraintStart_toStartOf="@+id/guideline9"
+            android:scaleX="0"
+            android:scaleY="0"
+            android:alpha="0" />
+        <Constraint
+            android:id="@+id/confirmPasswordRegister"
+            motion:layout_constraintEnd_toStartOf="@+id/guideline10"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toTopOf="@+id/guideline14"
+            motion:layout_constraintTop_toTopOf="@+id/guideline13"
+            motion:layout_constraintStart_toStartOf="@+id/guideline9"
+            android:scaleX="0"
+            android:scaleY="0"
+            android:alpha="0" />
+        <Constraint
+            android:id="@+id/signUp"
+            motion:layout_constraintEnd_toStartOf="@+id/guideline10"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toTopOf="@+id/guideline6"
+            motion:layout_constraintTop_toTopOf="@+id/guideline5"
+            motion:layout_constraintStart_toStartOf="@+id/guideline9"
+            android:scaleX="0"
+            android:scaleY="0"
+            android:alpha="0" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+    </ConstraintSet>
+</MotionScene>
