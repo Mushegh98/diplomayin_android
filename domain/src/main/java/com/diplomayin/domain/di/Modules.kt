@@ -1,11 +1,7 @@
 package com.diplomayin.domain.di
 
-import com.diplomayin.domain.interactor.LoginScreenInteractor
-import com.diplomayin.domain.interactor.MapScreenInteractor
-import com.diplomayin.domain.interactor.RegisterScreenInteractor
-import com.diplomayin.domain.usecase.LoginScreenUseCase
-import com.diplomayin.domain.usecase.MapScreenUseCase
-import com.diplomayin.domain.usecase.RegisterScreenUseCase
+import com.diplomayin.domain.interactor.*
+import com.diplomayin.domain.usecase.*
 import org.koin.dsl.module
 
 val interactorModule = module {
@@ -13,4 +9,6 @@ val interactorModule = module {
     single<MapScreenInteractor> { MapScreenUseCase(get()) }
     single<LoginScreenInteractor> { LoginScreenUseCase(get()) }
     single<RegisterScreenInteractor> { RegisterScreenUseCase(get()) }
+    single<AuthScreenInteractor> { AuthScreenUseCase(get()) }
+    single<MainActivityInteractor> { MainActivityUseCase(get()) }
 }

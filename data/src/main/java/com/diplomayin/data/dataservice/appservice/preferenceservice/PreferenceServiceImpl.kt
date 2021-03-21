@@ -102,4 +102,16 @@ class PreferenceServiceImpl(private val context: Context) : PreferenceService {
         editor?.remove(name + "str")
         editor?.apply()
     }
+
+    override fun setToken(token : String){
+        val editor = sharedPreferences?.edit()
+        editor?.remove("token")
+        editor?.apply()
+        editor?.putString("token",token)
+        editor?.apply()
+    }
+
+    override fun getToken() : String?{
+        return sharedPreferences?.getString("token","")
+    }
 }

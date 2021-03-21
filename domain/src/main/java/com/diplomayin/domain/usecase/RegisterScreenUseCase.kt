@@ -64,7 +64,7 @@ class RegisterScreenUseCase(private val registerScreenRepository: RegisterScreen
                     ?: com.diplomayin.entities.Result.Error(ApiException(DATA_NULL, "", null))
             }
             is com.diplomayin.entities.Result.Error -> {
-                com.diplomayin.entities.Result.Error(ApiException(DATA_ERROR, " ERROR  + ${result.errors.errorCode}", result.errors.errorBody))
+                com.diplomayin.entities.Result.Error(ApiException(result.errors.errorCode, result.errors.errorMessage, result.errors.errorBody))
             }
         }
     }

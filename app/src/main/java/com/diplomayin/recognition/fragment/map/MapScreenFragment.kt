@@ -20,6 +20,11 @@ class MapScreenFragment : FragmentBaseMVVM<MapScreenViewModel, FragmentMapScreen
     }
 
     override fun navigateUp() {
-        navigateBackStack()
+        val count = activity?.supportFragmentManager?.backStackEntryCount
+        if(count == 1 || count == 2){
+           activity?.finish()
+        }else{
+            navigateBackStack()
+        }
     }
 }

@@ -118,4 +118,15 @@ dependencies {
     implementation 'com.github.navinilavarasan:rxWebSocket:1.01'
 
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
+
+    //Chart
+    implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
+    implementation 'com.android.support:multidex:1.0.3'
+
+    //stopwatch
+    implementation 'com.yashovardhan99.timeit:timeit:1.2.0'
+
+    def room_version = "2.2.5"
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:$room_version"
 }

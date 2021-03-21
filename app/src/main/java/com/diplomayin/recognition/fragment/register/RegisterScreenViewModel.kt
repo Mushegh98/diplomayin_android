@@ -6,8 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.diplomayin.domain.interactor.RegisterScreenInteractor
 import com.diplomayin.entities.pojo.RegisterBody
+import com.diplomayin.entities.responsemodel.RegisterResponse
 import com.diplomayin.recognition.base.viewmodel.BaseViewModel
 import kotlinx.coroutines.launch
+import org.json.JSONObject
 
 class RegisterScreenViewModel(private val registerScreenInteractor: RegisterScreenInteractor) : BaseViewModel() {
 
@@ -69,7 +71,9 @@ class RegisterScreenViewModel(private val registerScreenInteractor: RegisterScre
                     _registerSuccess.value = data.data?.message
                 }
                 is com.diplomayin.entities.Result.Error -> {
-                    _registerError.value = data.errors.errorMessage
+                    val jObjError = JSONObject(data.errors.errorBody?.string())
+                    _registerError.value = jObjError.getString("message")
+
                 }
             }
             loadingEnd()

@@ -1,19 +1,19 @@
 package com.diplomayin.data.di
 
+import android.app.Application
+import androidx.room.Room
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.diplomayin.data.dataservice.RetrofitService
 import com.diplomayin.data.dataservice.appservice.preferenceservice.PreferenceService
 import com.diplomayin.data.dataservice.appservice.preferenceservice.PreferenceServiceImpl
-import com.diplomayin.data.datastore.LoginScreenRepository
-import com.diplomayin.data.datastore.MapScreenRepository
-import com.diplomayin.data.datastore.RegisterScreenRepository
-import com.diplomayin.data.repository.LoginScreenRepositoryImpl
-import com.diplomayin.data.repository.MapScreenRepositoryImpl
-import com.diplomayin.data.repository.RegisterScreenRepositoryImpl
+import com.diplomayin.data.dataservice.sqlservice.AppDatabase
+import com.diplomayin.data.datastore.*
+import com.diplomayin.data.repository.*
 import com.diplomayin.data.utils.Constants.Companion.BASE_URL
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -56,16 +56,14 @@ val apiModule = module {
 
 }
 val databaseModule = module {
-//    fun provideDatabase(application: Application): AppDatabase {
-//        return Room.databaseBuilder(application, AppDatabase::class.java, "ParkingDB")
-////                 .fallbackToDestructiveMigration()
+    fun provideDatabase(application: Application): AppDatabase {
+        return Room.databaseBuilder(application, AppDatabase::class.java, "RecognitionDB")
+                 .fallbackToDestructiveMigration()
 //            .allowMainThreadQueries()
-//            .build()
-//    }
-//    single { provideDatabase(androidApplication()) }
-//    single { get<AppDatabase>().roomDao() }
-//    single { get<AppDatabase>().readoutDAO() }
-//    single { get<AppDatabase>().vegaDao() }
+            .build()
+    }
+    single { provideDatabase(androidApplication()) }
+    single { get<AppDatabase>().recognitionDao() }
 }
 
 val repositoryModule = module {
@@ -74,8 +72,10 @@ val repositoryModule = module {
     single<PreferenceService> { PreferenceServiceImpl(get()) }
 
     /**Repositorys**/
-    single<LoginScreenRepository> { LoginScreenRepositoryImpl() }
+    single<LoginScreenRepository> { LoginScreenRepositoryImpl(get(),get()) }
     single<RegisterScreenRepository> { RegisterScreenRepositoryImpl(get()) }
     single<MapScreenRepository> { MapScreenRepositoryImpl() }
+    single<AuthScreenRepository> { AuthScreenRepositoryImpl(get()) }
+    single<MainActivityRepository> { MainActivityRepositoryImpl(get()) }
 
 }

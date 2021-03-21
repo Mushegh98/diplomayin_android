@@ -15,4 +15,6 @@ interface PreferenceService {
     fun setStringSet(name: String, `val`: Set<String?>?)
     fun getStringSet(name: String): HashSet<String>?
     fun deleteStringData(name : String)
+    fun setToken(token : String)
+    fun getToken() : String?
 }

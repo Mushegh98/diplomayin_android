@@ -6,6 +6,8 @@ import android.widget.Toast
 import com.diplomayin.entities.pojo.RegisterBody
 import com.diplomayin.recognition.R
 import com.diplomayin.recognition.base.FragmentBaseMVVM
+import com.diplomayin.recognition.base.utils.extension.makeToastShort
+import com.diplomayin.recognition.base.utils.extension.replaceFragment
 import com.diplomayin.recognition.base.utils.viewBinding
 import com.diplomayin.recognition.databinding.FragmentRegisterScreenBinding
 import com.diplomayin.recognition.fragment.auth.AuthScreenFragment
@@ -38,16 +40,16 @@ class RegisterScreenFragment : FragmentBaseMVVM<RegisterScreenViewModel, Fragmen
     override fun observes() {
         with(viewModel){
             observe(invalidEmail){
-                makeToast(it)
+               context?.makeToastShort(it)
             }
             observe(invalidPassword){
-                makeToast(it)
+                context?.makeToastShort(it)
             }
             observe(invalidUsername){
-                makeToast(it)
+                context?.makeToastShort(it)
             }
             observe(areNotMismatch){
-                makeToast(it)
+                context?.makeToastShort(it)
             }
             observe(validationSuccess){
                 with(binding){
@@ -58,7 +60,7 @@ class RegisterScreenFragment : FragmentBaseMVVM<RegisterScreenViewModel, Fragmen
                 createSuccessAlertDialog(it)
             }
             observe(registerError){
-                makeToast(it)
+                context?.makeToastShort(it)
             }
             observe(visibilityProgress){
                 if(it){
@@ -91,20 +93,20 @@ class RegisterScreenFragment : FragmentBaseMVVM<RegisterScreenViewModel, Fragmen
         navigateBackStack()
     }
 
-    private fun makeToast(message : String) = Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
+
 
     private fun createSuccessAlertDialog(message: String) {
         val alertDialog = AlertDialog.Builder(context)
         alertDialog.setTitle("Success!")
         alertDialog.setMessage(message)
+        alertDialog.setCancelable(false)
         alertDialog.setPositiveButton("OK", object : DialogInterface.OnClickListener {
             override fun onClick(dialog: DialogInterface?, which: Int) {
                 dialog?.cancel()
                 navigateBackStack()
-                activity?.supportFragmentManager?.beginTransaction()?.add(
+                activity?.supportFragmentManager?.replaceFragment(
                     R.id.frame,
-                    AuthScreenFragment.newInstance(binding.email.text.toString()),
-                    AuthScreenFragment::class.java.simpleName)?.addToBackStack("")?.commit()
+                    AuthScreenFragment.newInstance(binding.email.text.toString()))
             }
 
         })

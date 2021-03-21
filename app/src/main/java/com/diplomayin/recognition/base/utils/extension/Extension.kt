@@ -11,6 +11,8 @@ import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import java.text.ParseException
@@ -156,4 +158,20 @@ private fun changeFormat(oldDate: String): String {
     }
     simpleDateFormat!!.applyPattern(newFormat)
     return simpleDateFormat.format(d)
+}
+
+fun FragmentManager.addFragment(id : Int, fragment: Fragment, addToBackStack : Boolean = true){
+    if(addToBackStack){
+        this.beginTransaction().add(id,fragment,fragment::class.java.simpleName).addToBackStack("").commit()
+    }else{
+        this.beginTransaction().add(id,fragment,fragment::class.java.simpleName).commit()
+    }
+}
+
+fun FragmentManager.replaceFragment(id : Int, fragment: Fragment, addToBackStack : Boolean = true){
+    if(addToBackStack){
+        this.beginTransaction().replace(id,fragment,fragment::class.java.simpleName).addToBackStack("").commit()
+    }else{
+        this.beginTransaction().replace(id,fragment,fragment::class.java.simpleName).commit()
+    }
 }
