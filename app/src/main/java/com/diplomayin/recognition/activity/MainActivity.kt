@@ -1,11 +1,11 @@
 package com.diplomayin.recognition.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.diplomayin.recognition.R
 import com.diplomayin.recognition.base.utils.extension.replaceFragment
 import com.diplomayin.recognition.fragment.login.LoginScreenFragment
-import com.diplomayin.recognition.fragment.map.MapScreenFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -19,8 +19,10 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.replaceFragment(R.id.frame,
                 LoginScreenFragment.newInstance())
         }else{
-            supportFragmentManager.replaceFragment(R.id.frame,
-                MapScreenFragment.newInstance())
+            Intent(this,ContainerActivity::class.java).apply {
+                startActivity(this)
+                finish()
+            }
         }
 
     }

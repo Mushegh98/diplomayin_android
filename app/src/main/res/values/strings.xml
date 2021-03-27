@@ -10,4 +10,7 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="confirm">Confirm</string>
     <string name="code">Code</string>
+    <string name="permission_required">Permission Required</string>
+    <string name="grant_permission">Grant permissions</string>
+    <string name="location_permission_message">Message.</string>
 </resources>
